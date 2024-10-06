@@ -1,0 +1,357 @@
+<html>
+
+<head>  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>EDUTEC</title>
+
+  <link href="styles.css" rel="stylesheet">
+
+  <script src="chemlab.js" defer></script>
+  <script src="Quiz.js" defer></script> <!-- For quiz functionality -->
+  <script src="Therm.js" defer></script>
+</head>
+
+<body>
+  <div id="introSlides" class="slides">
+      <div class="slide active">
+          <h1>Welcome to Chemistry-Simulation</h1>
+          <p>Learn about the reactions between cations and various reagents.</p>
+          <button onclick="nextSlide()">Start Simulation</button>
+      </div>
+      <div class="slide">
+          <h2>Lead (Pb²⁺) + H₂S</h2>
+          <p><strong>Result:</strong> Formation of a black precipitate of lead sulfide (PbS).</p>
+          <p><strong>Explanation:</strong> Lead ions react with hydrogen sulfide to form insoluble lead sulfide.</p>
+          <button onclick="nextSlide()">Next</button>
+      </div>
+      <div class="slide">
+          <h2>Copper (Cu²⁺) + NaOH</h2>
+          <p><strong>Result:</strong> Formation of a blue precipitate of copper hydroxide (Cu(OH)₂).</p>
+          <p><strong>Explanation:</strong> Sodium hydroxide reacts with copper ions to form copper hydroxide.</p>
+          <button onclick="nextSlide()">Next</button>
+      </div>
+      <div class="slide">
+          <h2>Bismuth (Bi³⁺) + H₂S</h2>
+          <p><strong>Result:</strong> Formation of a brown-black precipitate of bismuth sulfide (Bi₂S₃).</p>
+          <p><strong>Explanation:</strong> Bismuth ions react with hydrogen sulfide to form bismuth sulfide.</p>
+          <button onclick="nextSlide()">Next</button>
+      </div>
+      <div class="slide">
+          <h2>Iron (Fe³⁺) + NaOH</h2>
+          <p><strong>Result:</strong> Formation of a brown precipitate of iron(III) hydroxide (Fe(OH)₃).</p>
+          <p><strong>Explanation:</strong> Sodium hydroxide reacts with iron ions to form iron hydroxide.</p>
+          <button onclick="nextSlide()">Next</button>
+      </div>
+      <div class="slide">
+          <h2>Chromium (Cr³⁺) + NaOH</h2>
+          <p><strong>Result:</strong> Initially forms a grey-green precipitate of chromium hydroxide (Cr(OH)₃), which can dissolve in excess NaOH to form a chromate complex.</p>
+          <p><strong>Explanation:</strong> Chromium ions react with sodium hydroxide, but excess NaOH may cause further reaction.</p>
+          <button onclick="nextSlide()">Next</button>
+      </div>
+      <div class="slide">
+          <h2>Aluminum (Al³⁺) + NaOH</h2>
+          <p><strong>Result:</strong> Formation of a white precipitate of aluminum hydroxide (Al(OH)₃), which dissolves in excess NaOH.</p>
+          <p><strong>Explanation:</strong> Aluminum reacts to form the hydroxide, which is amphoteric, meaning it can dissolve in excess NaOH.</p>
+          <button onclick="nextSlide()">Next</button>
+      </div>
+      <div class="slide">
+          <h2>Zinc (Zn²⁺) + NaOH</h2>
+          <p><strong>Result:</strong> Formation of a white precipitate of zinc hydroxide (Zn(OH)₂), which dissolves in excess NaOH.</p>
+          <p><strong>Explanation:</strong> Similar to aluminum, zinc hydroxide dissolves in excess NaOH to form a soluble zincate ion.</p>
+          <button onclick="nextSlide()">Next</button>
+      </div>
+      <div class="slide">
+          <h2>Barium (Ba²⁺) + Acetic Acid + Potassium Chromate</h2>
+          <p><strong>Result:</strong> Formation of a yellow precipitate of barium chromate (BaCrO₄).</p>
+          <p><strong>Explanation:</strong> Barium reacts with chromate ions to form an insoluble yellow precipitate of barium chromate.</p>
+          <button onclick="nextSlide()">Next</button>
+      </div>
+      <div class="slide">
+          <h2>Iron (Fe³⁺) + Potassium Iodide</h2>
+          <p><strong>Result:</strong> The solution turns brown as iodine is liberated, and iron(II) forms.</p>
+          <p><strong>Explanation:</strong> Iron(III) ions are reduced by iodide to form iron(II) and iodine.</p>
+          <button onclick="nextSlide()">Next</button>
+      </div>
+      <div class="slide">
+          <h2>Copper (Cu²⁺) + NH₄OH (Ammonium Hydroxide)</h2>
+          <p><strong>Result:</strong> Formation of a deep blue solution due to the formation of tetraamminecopper(II) complex.</p>
+          <p><strong>Explanation:</strong> Ammonium hydroxide reacts with copper to form a soluble complex.</p>
+          <button onclick="startSimulation()">Start Simulation</button>
+      </div>
+  </div>
+  <script src="chemlab.js"></script>
+
+<header>
+  <h1>Chemistry Simulation</h1>
+</header>
+
+<div class="center border">
+    <div class="aligned">
+     <div class="left"> <!--Left side-->
+      <div id="dividebuttons" style="display: none;">
+          <button id="t1btn" onclick="TestTube1()" style="background-color: ghostwhite;">Test tube 1
+          </button>
+          <button id="t2btn" onclick="TestTube2()" style="background-color: white;">Test tube 2
+          </button>
+        </div>
+        <div class="testtube-container">
+          <div id="testtube">
+            <div class="fill">
+            </div>
+            <div id="cation">
+            </div>
+            <div id="Thermometer" style="display: none;">
+              <img src="image/thermometer.png" alt="Thermometer" id="thermometer-img" style="height: 100px;">
+              <p id="temperature-display">Temperature: 25 °C</p>
+            </div>
+          </div>
+        </div>
+  
+        <!--Bunsen Burner-->
+        <div id="IcePlate" style="display: none;">
+          <img src="image/iceplate.png" alt="Ice Plate" style="height: 100px;">
+      </div>
+        <div id="burner" style="display: none; ">
+          <img alt="" border="0" data-original-height="1269" data-original-width="635" height="320"
+            src="https://1.bp.blogspot.com/-riCc4aVMGv0/YVfkbJp7mwI/AAAAAAAAAh0/ac1r-nIgZuEZHGJBLkdfpZ-pUXVI87bxACLcBGAsYHQ/s320/bunsen-burner-edited.png" />
+        </div>
+        <div id="workbench" class="aligned">
+        <div class="greyboxhidden" id="Observation" title="Result will be shown here">
+            Intergroup Separation
+          </div>
+  
+          <!-- <div>
+            <button onclick="ShowResult()" class="showResult" title="Result will be shown here">
+              <b>?</b>
+            </button>
+          </div> -->
+  
+          <p id="resulthidden" style="display: none;">
+            Result will be shown here </p>
+        </div>
+      </div> <!--Left side-->
+      <div><!--Right side-->
+
+      <div class="buttons-outside">
+        <div id="addcationcontainer">
+          <button onclick="CationShowOptions();" class="addCation">
+            Add Cation
+          </button>
+
+          <div class="CationHideOptions">
+  
+          <input id="Pb" name="choice" type="radio" value="Pb" />
+          <label>Pb (lead)</label>
+          <br />
+          <input id="Cu" name="choice" type="radio" value="Cu" />
+          <label>Cu (Copper)</label>
+          <br />
+          <input id="Bi" name="choice" type="radio" value="Bi" />
+          <label>Bi (Bismuth)</label>
+          <br />
+          <input id="Cd" name="choice" type="radio" value="Cd" />
+          <label>Cd(Cadmium)</label>
+          <br />
+          <input id="Fe" name="choice" type="radio" value="Fe" />
+          <label>Fe (Iron) </label>
+          <br />
+          <input id="Cr" name="choice" type="radio" value="Cr" />
+          <label>Cr (Chromium) </label>
+          <br />
+          <input id="Al" name="choice" type="radio" value="Al" />
+          <label>Al (Aluminium) </label>
+          <br />
+          <input id="Zn" name="choice" type="radio" value="Zn" />
+          <label>Zn (Zinc) </label>
+          <br />
+          <input id="Mn" name="choice" type="radio" value="Mn" />
+          <label>Mn (Manganese) </label>
+          <br />
+          <input id="Ba" name="choice" type="radio" value="Ba" />
+          <label>Ba (Barium) </label>
+          <br />
+          <button onclick="cationselected();CationHideOptions();" class="done">
+            Done
+          </button>
+        </div>
+        </div>
+        <hr>
+  
+        <div id="add">
+          <button class="btnadd" id="add-water-btn" onclick="water();playfillsound();">Add water</button>
+  
+          <button class="btnadd" id="addreagent" onclick="ReagentShowOptions();">Reagents</button>
+
+          <div class="ReagentHideOptions" id="reagentselection" style="background: lightgrey; font-size: 20px;">
+            <input id="dil.HCl" name="reagent" type="radio" value="dil.HCl" />
+            <label>dil.HCl</label>
+            <br />
+            <input id="con.HCl" name="reagent" type="radio" value="con.HCl" />
+            <label>con.HCl</label>
+            <br />
+            <input id="H2S" name="reagent" type="radio" value="H2S" />
+            <label>H2S</label>
+            <br />
+            <input id="NaOH" name="reagent" type="radio" value="NaOH" />
+            <label>NaOH</label>
+            <br />
+            <input id="NH4Cl" name="reagent" type="radio" value="NH4Cl" />
+            <label>NH4Cl</label>
+            <br />
+            <input id="NH4OH" name="reagent" type="radio" value="NH4OH" />
+            <label>NH4OH</label>
+            <br />
+            <input id="NH4CO3" name="reagent" type="radio" value="NH4CO3" />
+            <label>(NH4)2CO3 </label>
+            <br />
+            <input id="Acetic" name="reagent" type="radio" value="Acetic" />
+            <label> Acetic Acid </label>
+            <br />
+            <input id="Nessler" name="reagent" type="radio" value="Nessler" />
+            <label> Nessler′s reagent </label>
+            <br />
+            <input id="Chromate" name="reagent" type="radio" value="Chromate" />
+            <label>Potassium chromate</label>
+            <br />
+            <input id="Iodide" name="reagent" type="radio" value="Iodide" />
+            <label>potassium iodide</label>
+            <br />
+    
+            <button id="add-reagent-btn" onclick="Reagentselected();playfillsound();">
+              Done
+            </button>
+    
+          </div>
+        </div>
+  
+        <hr />
+  
+        <div id="functions">
+  
+          <button class="btnfun" onclick="shake();setTimeout(changeshake,1000);setTimeout(changeshake2,2000);">
+            Shake (Mix)
+          </button>
+  
+          <button class="btnfun" onclick="filtered();drainwater();setTimeout(pause, 700);">
+            Result
+          </button>
+  
+          <button class="btnfun" onclick="Concentrate()">Concentrate
+          </button>
+
+          <br>
+  
+          <button class="btnfun" onclick="HeatAndPlaySound();">Heat</button>
+          <button id="coolButton" onclick="showIcePlateAndPlaySound()">Cool</button>
+          <button class="btnfun" onclick="BoilAndPlaySound();">Boil</button>
+         <button id="thermometer-btn" onclick="insertThermometer()">Thermometer</button>
+         <button id="btnfun" onclick="resetExperiment()">Reset</button>
+        </div>
+        <div id="temperature-display" style="display:none; font-size: 18px; margin-top: 20px;">
+          Current Temperature: <span id="temperature-value">25</span>°C
+        </div>
+      
+        <hr />
+  
+       <!---- <button onclick="Divide()">Divide to 2 portions</button>-->
+  
+      </div> <!--Right side-->
+  
+    </div> <!--aligned-->
+  
+  <! edit-->
+</div>
+</div>
+<!--Audio-->
+
+  <audio id="fillsound"
+    src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Emptying_syringe_in_water_slow.ogg"></audio>
+
+  <audio id="drainsound"
+    src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Kitchen_sink_draining_water.ogg#t=5,6"></audio>
+
+  <audio id="iceSound" src="image/ice-collect.mp3"></audio>
+  <audio id="heatSound" src="image/heating.mp3"></audio>
+  <audio id="boilSound" src="image/boiling.mp3"></audio>
+
+  <script>
+    function playfillsound() {
+      document.getElementById("fillsound").play();
+    }
+
+    function drainwater() {
+      const $drain = document.getElementById("drainsound");
+
+      $drain.onpause = () => $drain.src = $drain.src;
+      $drain.play();
+    }
+
+    function pause() {
+      document.getElementById("drainsound").pause();
+    }
+    function showIcePlateAndPlaySound() {
+    // Show the ice plate
+    document.getElementById("IcePlate").style.display = "block";
+    
+    // Play the ice sound
+    var iceSound = document.getElementById("iceSound");
+    iceSound.play();
+   }
+   
+   function HeatAndPlaySound() {
+    // Your existing heat logic (e.g., showing the burner)
+    document.getElementById("burner").style.display = "block";
+
+    // Play the heat sound
+    var heatSound = document.getElementById("heatSound");
+    heatSound.play();
+   }
+
+   function StopHeat() {
+    // Your existing stop heat logic (e.g., hiding the burner)
+    document.getElementById("burner").style.display = "none";
+
+    // Stop the heat sound
+    var heatSound = document.getElementById("heatSound");
+    heatSound.pause();
+    heatSound.currentTime = 0;  // Reset the sound to start from the beginning
+   }
+   
+   function BoilAndPlaySound() {
+    // Your existing heat logic (e.g., showing the burner)
+    document.getElementById("burner").style.display = "block";
+
+    // Play the heat sound
+    var boilSound = document.getElementById("boilSound");
+    heatSound.play();
+   }
+
+   function StopBoil() {
+    // Your existing stop heat logic (e.g., hiding the burner)
+    document.getElementById("burner").style.display = "none";
+
+    // Stop the heat sound
+    var boilSound = document.getElementById("boilSound");
+    heatSound.pause();
+    heatSound.currentTime = 0;  // Reset the sound to start from the beginning
+   }
+
+  </script>
+  <div id="quiz-section" class="quiz-section">
+    <button id="quiz-button">Take the Quiz</button>
+    <div id="quiz-container" class="quiz-container" style="display: none;">
+        <!-- Quiz questions will be inserted here by JavaScript -->
+        <div id="quiz-container" class="quiz-container"></div>
+        <div id="quiz-feedback" style="display: none;"></div>
+    </div>
+</div>
+<footer>
+  <div class="logo-container">
+      <img src="image/Artboard 6 copy 3.png" alt="Edutec Logo" class="logo" />
+  </div>
+</footer>
+
+</body>
+
+</html>
