@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copper Electroplating Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="title">Copper Electroplating Simulation</div>
+
+    <div id="main">
+        <div id="container">
+            <img id="logo" src="Logo2.png" alt="Logo" />
+            <div id="electrolysisArea">
+                <div class="electrode" id="anode"></div> <!-- Anode -->
+                <div class="electrode" id="cathode"></div> <!-- Cathode -->
+                <div id="anodeLabel">Anode (+)</div>
+                <div id="cathodeLabel">Cathode (-)</div>
+                <div class="bubbles" id="bubbleContainer"></div>
+            </div>
+        </div>
+
+        <div id="controls">
+            <!-- Dropdown to select electrode type -->
+            <label for="electrodeType">Electrode Type:</label>
+            <select id="electrodeType">
+                <option value="Copper">Copper Electrodes</option>
+                <option value="Carbon">Carbon Electrodes</option>
+            </select>
+
+            <!-- Voltage and current sliders -->
+            <label for="voltageSlider">Voltage (V):</label>
+            <input type="range" id="voltageSlider" min="0" max="12" value="5">
+
+            <label for="currentSlider">Current (A):</label>
+            <input type="range" id="currentSlider" min="0" max="5" value="1">
+
+            <!-- Start/Stop buttons -->
+            <button id="startButton">Start Electroplating</button>
+            <button id="stopButton">Stop Electroplating</button>
+
+            <!-- Back button to navigate to electrolysis -->
+            <button id="backButton" onclick="goBack()">Back to Electrolysis</button>
+        </div>
+    </div>
+
+    <!-- Load p5.js library for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <!-- Load custom JavaScript for the simulation -->
+    <script src="electroplating.js"></script>
+</body>
+</html>

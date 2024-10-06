@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrolysis Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <!-- Loading Container -->
+   <div id="loadingContainer">
+    <div id="logoContainer">
+        <img id="loadingLogo" src="Logo2.png" alt="Logo" />
+        <div id="progressBar">
+            <div id="progress"></div> <!-- This will fill up with green color -->
+        </div>
+    </div>
+</div>
+  <!-- main thing  -->
+    <div id="title">Electrolysis Simulation</div>
+    
+    <div id="main">
+        <div id="container">
+            <img id="logo" src="Logo2.png" alt="Logo" />
+            <div id="calcInfo">
+                <p>Voltage: <span id="voltageOutput">5</span> V</p>
+                <p>Current: <span id="currentOutput">1</span> A</p>
+                <p>Electrolysis Duration: <span id="durationOutput">30</span> sec</p>
+            </div>
+            <div id="electrolysisArea">
+                <div class="electrode" id="anode"></div>
+                <div class="electrode" id="cathode"></div>
+                <div id="anodeLabel">Anode (+)</div> <!-- Label the anode -->
+                <div id="cathodeLabel">Cathode (-)</div> <!-- Label the cathode -->
+                <div class="bubbles" id="bubbleContainer"></div>
+            </div>
+            
+            </div>
+        </div>
+
+        <div id="controls">
+            <label for="solution">Solution:</label>
+            <select id="solution">
+                <option value="Molten Lead(II) Bromide">Molten Lead(II) Bromide</option>
+                <option value="Dilute Sulfuric Acid">Dilute Sulfuric Acid</option>
+                <option value="Concentrated Hydrochloric Acid">Concentrated Hydrochloric Acid</option>
+                <option value="Concentrated Aqueous Sodium Chloride">Concentrated Aqueous Sodium Chloride</option>
+            </select>
+
+            <label for="voltageSlider">Voltage (V):</label>
+            <input type="range" id="voltageSlider" min="0" max="12" value="5">
+            <div id="voltageTooltip" class="tooltip tooltip-voltage">Adjusts the voltage applied for electrolysis.</div>
+
+            <label for="currentSlider">Current (A):</label>
+            <input type="range" id="currentSlider" min="0" max="5" value="1">
+            <div id="currentTooltip" class="tooltip tooltip-current">Controls the amount of electric current.</div>
+
+            <button id="startButton">Start Electrolysis</button>
+            <button id="stopButton">Stop Electrolysis</button>
+            <button id="seeElectroplating" onclick="goToElectroplating()">See Electroplating</button>
+            <button id="quiz" onclick="startQuiz()">Start Quiz</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="sketch.js"></script>
+    <script>
+        // Simulating loading process
+        window.onload = function() {
+            // Simulate loading progress
+            let progress = document.getElementById("progress");
+            let loadingContainer = document.getElementById("loadingContainer");
+            let width = 0;
+
+            // Update the loading progress
+            let loadingInterval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(loadingInterval);
+                    loadingContainer.style.display = "none"; // Hide loading screen
+                } else {
+                    width++;
+                    progress.style.width = width + '%';
+                }
+            }, 30); // Adjust the interval time for loading speed
+        };
+    </script>
+</body>
+</html>
