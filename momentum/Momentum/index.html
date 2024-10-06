@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum Simulation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Container -->
+    <div id="loadingContainer">
+        <div id="logoContainer">
+            <img id="loadingLogo" src="Logo2.png" alt="Logo" />
+            <div id="progressBar">
+                <div id="progress"></div> <!-- This will fill up with green color -->
+            </div>
+        </div>
+    </div>
+    <div id="title"></div>
+    <div id="container">
+        <div id="controls">
+            <label for="massA">Mass A (kg):</label>
+            <input type="number" id="massA" value="0" step="0.1" min="0.1">
+            
+            <label for="velocityA">Velocity A (m/s):</label>
+            <input type="number" id="velocityA" value="0" step="0.1" min="0">
+            
+            <label for="massB">Mass B (kg):</label>
+            <input type="number" id="massB" value="0" step="0.1" min="0.1">
+            
+            <label for="velocityB">Velocity B (m/s):</label>
+            <input type="number" id="velocityB" value="0" step="0.1" min="0">
+            
+            <button id="update">Display Momentum</button>
+            <button id="play">Play</button>
+            <button id="stop" disabled>Stop</button> 
+            <button id="restart">Restart</button>
+            <button id="quiz">Quiz</button> 
+        </div>
+        <div id="renderer-container">
+            <img src="Logo2.png" alt="Logo" id="logo">
+        </div>
+        <div id="momentumInfo">
+            <p id="momentumDisplayA">Ball A: 0 kg·m/s</p>
+            <p id="momentumDisplayB">Ball B: 0 kg·m/s</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="sketch.js"></script>
+    
+    <script>
+        // Simulating loading process
+        window.onload = function() {
+            // Simulate loading progress
+            let progress = document.getElementById("progress");
+            let loadingContainer = document.getElementById("loadingContainer");
+            let width = 0;
+
+            // Update the loading progress
+            let loadingInterval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(loadingInterval);
+                    loadingContainer.style.display = "none"; // Hide loading screen
+                } else {
+                    width++;
+                    progress.style.width = width + '%';
+                }
+            }, 30); // Adjust the interval time for loading speed
+        };
+    </script>
+</body>
+</html>
