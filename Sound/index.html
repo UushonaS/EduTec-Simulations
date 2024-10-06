@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Wave</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Container -->
+    <div id="loadingContainer">
+        <div id="logoContainer">
+            <img id="loadingLogo" src="Logo2.png" alt="Logo" />
+            <div id="progressBar">
+                <div id="progress"></div> <!-- This will fill up with green color -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Simulation Content -->
+    <div id="mainContent" style="display: none;">
+        <div id="title"></div>
+        
+        <div id="main">
+            <div id="container">
+                <img id="logo" src="Logo2.png" alt="Logo" />
+                <div id="calcInfo">
+                    <p>Frequency: <span id="frequencyOutput">440</span> Hz</p>
+                    <p>Speed of Sound: <span id="speedOutput">346</span> m/s</p>
+                    <p>Wavelength: <span id="wavelengthOutput">0.79</span> m</p>
+                </div>
+            </div>
+
+            <div id="controls">
+                <label for="medium">Medium:</label>
+                <select id="medium">
+                    <option value="Gas">Gas</option>
+                    <option value="Liquid">Liquid</option>
+                    <option value="Solid">Solid</option>
+                </select>
+
+                <label for="waveType">Wave Type:</label>
+                <select id="waveType">
+                    <option value="sine">Sine</option>
+                    <option value="triangle">Triangle</option>
+                </select>
+
+                <label for="frequencySlider">Frequency (Hz):</label>
+                <input type="range" id="frequencySlider" min="20" max="2000" value="440">
+                <div id="frequencyTooltip" class="tooltip tooltip-frequency">Frequency (Hz): Adjusts the pitch of the sound. Formula: f = v / λ</div>
+
+                <label for="amplitudeSlider">Amplitude:</label>
+                <input type="range" id="amplitudeSlider" min="0" max="1" step="0.01" value="0.5">
+                <div id="amplitudeTooltip" class="tooltip tooltip-amplitude">Amplitude: Controls the volume of the sound.</div>
+
+                <button id="playButton">Play Sound</button>
+                <button id="pauseButton">Pause Sound</button>
+                <button id="quiz" onclick="startQuiz()">Start Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="sketch.js"></script>
+    <script>
+        // Simulating loading progress
+        window.addEventListener('load', function() {
+            const progressBar = document.getElementById('progress');
+            let progress = 0;
+
+            const interval = setInterval(function() {
+                if (progress < 100) {
+                    progress += 10;
+                    progressBar.style.width = progress + '%';
+                } else {
+                    clearInterval(interval);
+                    document.getElementById('loadingContainer').style.display = 'none';
+                    document.getElementById('mainContent').style.display = 'block';
+                }
+            }, 300);
+        });
+
+        function startQuiz() {
+            window.location.href = 'quiz.html';  
+        }
+    </script>
+</body>
+</html>
